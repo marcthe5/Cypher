@@ -17,6 +17,9 @@ import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextPane;
+import java.awt.Cursor;
+import javax.swing.border.LineBorder;
+import java.awt.Window.Type;
 /* 
  * PROJECT NAME : CYPHER
  * DEV : MAC
@@ -60,11 +63,13 @@ public class Main extends JFrame {
 	 * Create the frame.
 	 */
 	public Main() {
+		setType(Type.UTILITY);
+		setTitle("CYPHER");
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 561, 492);
 		contentPane = new JPanel();
-		contentPane.setBackground(SystemColor.activeCaptionBorder);
+		contentPane.setBackground(Color.DARK_GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
@@ -76,10 +81,16 @@ public class Main extends JFrame {
 	
 		
 		JTextPane encryptedText = new JTextPane();
-		encryptedText.setBounds(6, 262, 539, 190);
+		encryptedText.setForeground(Color.BLACK);
+		encryptedText.setBackground(Color.LIGHT_GRAY);
+		encryptedText.setBounds(6, 262, 544, 190);
 		contentPane.add(encryptedText);
 		
 		JButton button = new JButton("ENCRYPT");
+		button.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		button.setBorder(null);
+		button.setForeground(Color.BLACK);
+		button.setBackground(Color.WHITE);
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				text = stringText.getText();
@@ -93,8 +104,24 @@ public class Main extends JFrame {
 		
 		
 		button.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		button.setBounds(207, 212, 143, 39);
+		button.setBounds(100, 212, 143, 39);
 		contentPane.add(button);
+		
+		JButton btnClear = new JButton("CLEAR");
+		btnClear.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				list.clear();
+			    stringText.setText(null);
+			    encryptedText.setText(null);
+			}
+		});
+		btnClear.setFocusPainted(false);
+		btnClear.setBackground(Color.DARK_GRAY);
+		btnClear.setForeground(Color.WHITE);
+		btnClear.setBorder(new LineBorder(Color.WHITE));
+		btnClear.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		btnClear.setBounds(308, 212, 143, 39);
+		contentPane.add(btnClear);
 	}
 	
 	
